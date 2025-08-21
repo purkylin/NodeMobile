@@ -15,6 +15,6 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .binaryTarget(name: "NodeMobile", url: "", checksum: "777eee8241feaba9b15b6cb7919c2f13d767e663f33c569f71a19803bcc8ca0e"),
+        .binaryTarget(name: "NodeMobile", url: "https://cdn.9228.eu/NodeMobile.xcframework.zip", checksum: "777eee8241feaba9b15b6cb7919c2f13d767e663f33c569f71a19803bcc8ca0e"),
     ]
 )
