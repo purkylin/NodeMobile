@@ -10,11 +10,15 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "NodeMobile",
-            targets: ["NodeMobile"]),
+            targets: ["_NodeMobile", "node_api", "NodeExtension"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .binaryTarget(name: "NodeMobile", url: "https://cdn.9228.eu/NodeMobile.xcframework.zip", checksum: "777eee8241feaba9b15b6cb7919c2f13d767e663f33c569f71a19803bcc8ca0e"),
+        .target(name: "node_api"),
+        .binaryTarget(name: "_NodeMobile", url: "https://cdn.9228.eu/NodeMobile.xcframework.zip", checksum: "777eee8241feaba9b15b6cb7919c2f13d767e663f33c569f71a19803bcc8ca0e"),
+        .target(name: "NodeBridge", dependencies: ["node_api"]),
+        .target(name: "NodeExtension", dependencies: ["NodeBridge"]),
+
     ]
 )
