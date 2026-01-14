@@ -163,8 +163,11 @@ static napi_value Notify(napi_env env, napi_callback_info info) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
         
         if (dict) {
-            NSLog(@"[NodeExtension] Posting JSNotify with data: %@", dict);
-            [[NSNotificationCenter defaultCenter] postNotificationName: @"Emit" object:nil userInfo:dict];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"JSNotify"
+                                                                    object:nil
+                                                                  userInfo:dict];
+            });
         } else {
             NSLog(@"[NodeExtension] Failed to parse JSON data: %@", error);
         }
