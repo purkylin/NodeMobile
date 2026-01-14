@@ -22,6 +22,6 @@
 //  THE SOFTWARE.
 //
 
-#import "node_api/node_api.h"
+//#import "node_api/node_api.h"
 
-napi_value *p;
+//napi_value *p;
