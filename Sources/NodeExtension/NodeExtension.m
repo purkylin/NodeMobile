@@ -208,6 +208,17 @@ napi_value create_addon(napi_env env, napi_value exports) {
 
 #define NODE_GYP_MODULE_NAME SwiftBridge
 
-NAPI_MODULE_INIT() {
-    return create_addon(env, exports);
+static napi_module _module = {
+    .nm_version = NAPI_MODULE_VERSION,
+    .nm_flags = 0,
+    .nm_filename = __FILE__,
+    .nm_register_func = create_addon,
+    .nm_modname = "SwiftBridge",
+    .nm_priv = NULL,
+    .reserved = {0},
+};
+
+__attribute__((constructor))
+static void register_swift_bridge(void) {
+    napi_module_register(&_module);
 }
